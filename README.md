@@ -6,7 +6,7 @@
 Repository for EPMS Custom Apps
 
 ##### Folders
-* util/: Dependencies and utilities
+* util/: Utilities and dependencies
 
 ##### Current Version
 * EPMS - v18.1 Build 7
