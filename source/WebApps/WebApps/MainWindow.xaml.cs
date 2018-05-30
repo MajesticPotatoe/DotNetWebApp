@@ -19,7 +19,7 @@ namespace WebApps
 
             // call browser class 
             var browser = new Browser();
-            browserWin.Navigate(browser.CreateURL(Path.Combine(@"file://{0}", @"../../../../Web/" + path + "/index.html")));
+            browserWin.Navigate(browser.CreateURL(Path.Combine(@"file://{0}", @"../../../../Web/apps/" + path + "/index.html")));
             
             //relative pathing v.1
             //browserWin.Navigate(browser.CreateURL(@"file://{0}/"+path+"/index.html"));
