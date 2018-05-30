@@ -7,7 +7,10 @@ Repository for EPMS Custom Apps
 
 ##### Folders
 * util/: Utilities and dependencies
+* source/: Source code for all apps
+* exec/: Executables and image files
+* dist/: Distributable Applications
 
 ##### Current Version
 * EPMS - v18.1 Build 7
-* Application 1 - v0.0.0
+* WebApps - v0.0.0
