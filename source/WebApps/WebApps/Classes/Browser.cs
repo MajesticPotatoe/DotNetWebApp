@@ -39,7 +39,7 @@ namespace WebApps
 
             string view = (Application.Current as App).WebView;
 
-            string param = "?username=" + user.UserName + "&fullname=" + user.FullName + "&view=" + view;
+            string param = "?origin=epms&username=" + user.UserName;
 
             Uri newUri = new Uri(String.Format(file + param, baseDir));
             return newUri;
