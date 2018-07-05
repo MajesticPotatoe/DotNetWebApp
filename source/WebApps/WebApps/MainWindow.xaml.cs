@@ -27,7 +27,7 @@ namespace WebApps
                     url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web:3010"  : @"http://EPMS-Dev:3010" ;
                     break;
                 case "SS":
-                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web:3010" : @"http://EPMS-Dev:3010";
+                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web" : @"http://EPMS-Dev";
                     break;
             }
 
