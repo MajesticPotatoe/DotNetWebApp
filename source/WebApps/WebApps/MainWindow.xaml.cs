@@ -17,16 +17,19 @@ namespace WebApps
             
             string host = System.Environment.MachineName;
             string url= @"http://www.fcp.biz";
+            bool local = false;
 
             // call browser class 
             var browser = new Browser();
-            //browserWin.Navigate(browser.CreateURL(Path.Combine(@"file://{0}", @"../../../../Web/Apps/" + path + "/index.html")));
+
             //will point to hosted server Live/Dev Based on Computer Name (Namely RDP Farm)
             switch (view) {
-                case "EP":
+                case "EPMS Portal":
                     url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web:3010"  : @"http://EPMS-Dev:3010" ;
+                    if (local) { url = @"http://localhost:3010"; }
+                    // url = @"http://google.com";
                     break;
-                case "SS":
+                case "Ship Store":
                     url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web" : @"http://EPMS-Dev";
                     break;
             }

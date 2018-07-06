@@ -39,7 +39,7 @@ namespace WebApps
         {
             //Set webview to first startup parameter
             WebView = e.Args[0].ToString();
-            string appName = "TestApp-" + this.WebView;
+            string appName = "WebApp-" + this.WebView;
             bool createdNew;
 
             //Creates mutex instance and checks if it exists

@@ -152,7 +152,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\Admin Console.ico" />
+    <Resource Include="Images\Icons\EPMS Portal.ico" />
+    <Resource Include="Images\Icons\Ship Store.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
