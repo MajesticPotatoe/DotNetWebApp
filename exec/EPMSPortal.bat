@@ -1,3 +1,3 @@
-start "EPMSPortal" WebApps.exe "EP"
+start "EPMS Portal" WebApps.exe "EPMS Portal"
 timeout 1 >nul
 exit
