@@ -51,7 +51,6 @@ namespace WebApps
                 //MessageBox.Show("Another Instance of the application is already running.","Alert",  MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 ActivateOtherWindow();
                 Environment.Exit(-2);
-                //Application.Current.Shutdown();
             }
 
             //base.OnStartup(e);
