@@ -2,3 +2,4 @@ debug/*
 source/WebApps/.vs/*
 source/WebApps/WebApps/obj/*
 source/WebApps/WebApps/bin/*
+source/WebApps/packages/*

@@ -1,0 +1,4 @@
+[0712/082758.755:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[0712/082758.755:ERROR:cache_util.cc(134)] Unable to move cache folder GPUCache to old_GPUCache_000
+[0712/082758.756:ERROR:disk_cache.cc(169)] Unable to create cache
+[0712/082758.756:ERROR:shader_disk_cache.cc(601)] Shader Cache Creation failed: -2
