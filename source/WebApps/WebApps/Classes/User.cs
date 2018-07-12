@@ -1,5 +1,4 @@
-﻿
-namespace WebApps
+﻿namespace WebApps
 {
     public class User
     {
@@ -7,7 +6,7 @@ namespace WebApps
         /// Username of user taken from windows login
         /// </summary>
         public string UserName { get; set; }
-        
+
         /// <summary>
         /// Users Full Name taken from windows login
         /// </summary>
@@ -18,7 +17,8 @@ namespace WebApps
         /// </summary>
         /// <param name="username">Users username</param>
         /// <param name="fullname">Users fullname</param>
-        public User(string username, string fullname) {
+        public User(string username, string fullname)
+        {
             UserName = username;
             FullName = fullname;
         }
