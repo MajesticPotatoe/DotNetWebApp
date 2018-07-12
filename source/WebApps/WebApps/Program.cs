@@ -55,7 +55,7 @@ namespace WebApps
 
             var settings = new CefSettings
             {
-                CachePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                CachePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/WebApps"
             };
             // By default CefSharp will use an in-memory cache, you need to specify a Cache Folder to persist data
             // settings.CachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CefSharp\\Cache");
