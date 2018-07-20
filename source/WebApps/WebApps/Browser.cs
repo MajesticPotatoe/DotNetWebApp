@@ -71,7 +71,7 @@ namespace WebApps
             string param = string.Empty;
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
             User user = GetCurrUser();
-            bool local = true;
+            bool local = false;
 
             //will point to hosted server Live/Dev Based on Computer Name (Namely RDP Farm)
             switch (view)
