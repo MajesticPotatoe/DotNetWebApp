@@ -1,7 +1,6 @@
 ﻿using System;
 using System.DirectoryServices.AccountManagement;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
@@ -25,8 +24,10 @@ namespace WebApps
 
         public void InitializeChromium(string view)
         {
-            chromeBrowser = new ChromiumWebBrowser(CreateURL(view));
-            chromeBrowser.MenuHandler = new MyCustomMenuHandler();
+            chromeBrowser = new ChromiumWebBrowser(CreateURL(view))
+            {
+                MenuHandler = new MyCustomMenuHandler()
+            };
 
             // Add it to the form and fill it to the form window.
             Controls.Add(chromeBrowser);
@@ -37,6 +38,19 @@ namespace WebApps
         private void OnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
         {
             // do stuff like execute js
+            if (args.IsLoading == false)
+            {
+                User currUser = GetCurrUser();
+                string script = string.Format("" +
+                    "var username = document.getElementsByName('username')[0];" +
+                    "username.value = '" + currUser.UserName + "';" +
+                    "username.dispatchEvent(new Event('input'));" +
+                    "var password = document.getElementsByName('password')[0];" +
+                    "password.value = '" + currUser.Password + "';" +
+                    "password.dispatchEvent(new Event('input'));" +
+                    "");
+                chromeBrowser.GetMainFrame().ExecuteJavaScriptAsync(script);
+            }
         }
         
         private void Browser_FormClosing(object sender, FormClosingEventArgs e)
@@ -55,22 +69,20 @@ namespace WebApps
             string host = System.Environment.MachineName;
             string url = @"http://www.fcp.biz";
             string param = string.Empty;
-            string curDir = Directory.GetCurrentDirectory();
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
             User user = GetCurrUser();
-            bool local = false;
+            bool local = true;
 
             //will point to hosted server Live/Dev Based on Computer Name (Namely RDP Farm)
             switch (view)
             {
                 case "EPMS Portal":
-                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web:3010" : @"http://EPMS-Dev:3010";
-                    param = "?origin=epms&username=" + user.UserName;
-                    if (local) { url = @"http://localhost:3010"; }
-                    // url = @"http://google.com";
+                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web:3010/Login/" : @"http://EPMS-Dev:3010/Login/";
+                    param = "?origin=epms";
+                    if (local) { url = @"http://localhost:3010/Login/"; }
                     break;
                 case "Ship Store":
-                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web" : @"http://EPMS-Dev";
+                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web/" : @"http://EPMS-Dev/";
                     break;
             }
 
@@ -84,8 +96,9 @@ namespace WebApps
             //string username = WindowsIdentity.GetCurrent().Name.Split('\\')[1];
             string username = Environment.UserName;
             string fullname = UserPrincipal.Current.DisplayName;
+            string secretkey = "**||SuperSecretPassword||**";
 
-            User currUser = new User(username, fullname);
+            User currUser = new User(username, fullname, secretkey);
             return currUser;
         }
     }
