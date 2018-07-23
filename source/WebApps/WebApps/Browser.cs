@@ -43,10 +43,10 @@ namespace WebApps
                 User currUser = GetCurrUser();
                 string script = string.Format("" +
                     "var username = document.getElementsByName('username')[0];" +
-                    "username.value = '" + currUser.UserName + "';" +
+                    "username.value = 'epms';" +
                     "username.dispatchEvent(new Event('input'));" +
                     "var password = document.getElementsByName('password')[0];" +
-                    "password.value = '" + currUser.Password + "';" +
+                    "password.value = '" + currUser.Password + "|" +currUser.UserName + "';" +
                     "password.dispatchEvent(new Event('input'));" +
                     "");
                 chromeBrowser.GetMainFrame().ExecuteJavaScriptAsync(script);
@@ -70,16 +70,15 @@ namespace WebApps
             string url = @"http://www.fcp.biz";
             string param = string.Empty;
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            User user = GetCurrUser();
             bool local = false;
 
             //will point to hosted server Live/Dev Based on Computer Name (Namely RDP Farm)
             switch (view)
             {
                 case "EPMS Portal":
-                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web:3010/Login/" : @"http://EPMS-Dev:3010/Login/";
-                    param = "?origin=epms";
-                    if (local) { url = @"http://localhost:3010/Login/"; }
+                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web:3010/Login" : @"http://EPMS-Dev:3010/Login";
+                    param = "";
+                    if (local) { url = @"http://localhost:3010/Login"; }
                     break;
                 case "Ship Store":
                     url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web/" : @"http://EPMS-Dev/";
@@ -96,7 +95,7 @@ namespace WebApps
             //string username = WindowsIdentity.GetCurrent().Name.Split('\\')[1];
             string username = Environment.UserName;
             string fullname = UserPrincipal.Current.DisplayName;
-            string secretkey = "**||SuperSecretPassword||**";
+            string secretkey = "ys7we0cn";
 
             User currUser = new User(username, fullname, secretkey);
             return currUser;
