@@ -13,4 +13,4 @@ Repository for EPMS Custom Apps
 
 ##### Current Version
 * EPMS - v18.1 Build 7
-* WebApps - v0.0.1
+* WebApps - v0.0.2
