@@ -4,6 +4,54 @@
         "CefSharp.Core"
     </assembly>
     <members>
+        <member name="M:CefSharp.Internals.StringUtils.CreateExceptionString(scoped_refptr&lt;CefV8Exception&gt;)">
+            <summary>
+Creates a detailed expection string from a provided Cef V8 exception.
+</summary>
+            <param name="exception">The exception which will be used as base for the message</param>
+        </member>
+        <member name="M:CefSharp.Internals.StringUtils.AssignNativeFromClr(_cef_string_utf16_t*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String)">
+            <summary>
+Assigns the provided cef_string_t object from the given .NET string.
+</summary>
+            <param name="cefStr">The cef_string_t that should be updated.</param>
+            <param name="str">The .NET string whose value should be used to update cefStr.</param>
+        </member>
+        <member name="M:CefSharp.Internals.StringUtils.ToNative(System.Collections.Generic.IEnumerable`1{System.String})">
+            <summary>
+Converts a .NET List of strings to native (unmanaged) format.
+</summary>
+            <param name="str">The List of strings that should be converted.</param>
+            <returns>An unmanaged representation of the provided List of strings, or an empty List if the input is a nullptr.</returns>
+        </member>
+        <member name="M:CefSharp.Internals.StringUtils.ToNative(System.String)">
+            <summary>
+Converts a .NET string to native (unmanaged) format. Note that this method does not allocate a new copy of the
+</summary>
+            <param name="str">The string that should be converted.</param>
+            <returns>An unmanaged representation of the provided string, or an empty string if the input string is a nullptr.</returns>
+        </member>
+        <member name="M:CefSharp.Internals.StringUtils.ToClr(std.vector&lt;CefStringBase&lt;CefStringTraitsUTF16&gt;,std.allocator&lt;CefStringBase&lt;CefStringTraitsUTF16&gt;&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Converts an unmanaged vector of strings to a (managed) .NET List of strings.
+</summary>
+            <param name="cefStr">The vector of strings that should be converted.</param>
+            <returns>A .NET List of strings.</returns>
+        </member>
+        <member name="M:CefSharp.Internals.StringUtils.ToClr(CefStringBase&lt;CefStringTraitsUTF16&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Converts an unmanaged string to a (managed) .NET string.
+</summary>
+            <param name="cefStr">The string that should be converted.</param>
+            <returns>A .NET string.</returns>
+        </member>
+        <member name="M:CefSharp.Internals.StringUtils.ToClr(_cef_string_utf16_t!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Converts an unmanaged string to a (managed) .NET string.
+</summary>
+            <param name="cefStr">The string that should be converted.</param>
+            <returns>A .NET string.</returns>
+        </member>
         <member name="T:CefSharp.PopupFeatures">
             <summary>
 Class representing popup window features.
@@ -30,11 +78,12 @@ RequestContextSettings.AcceptLanguageList value.
         </member>
         <member name="P:CefSharp.BrowserSettings.BackgroundColor">
             <summary>
-Opaque background color used for the browser before a document is loaded
-and when no document color is specified. By default the background color
-will be the same as CefSettings.BackgroundColor. Only the RGB compontents
-of the specified value will be used. The alpha component must greater than
-0 to enable use of the background color but will be otherwise ignored.
+Background color used for the browser before a document is loaded and when no document color
+is specified. The alpha component must be either fully opaque (0xFF) or fully transparent (0x00).
+If the alpha component is fully opaque then the RGB components will be used as the background
+color. If the alpha component is fully transparent for a WinForms browser then the
+CefSettings.BackgroundColor value will be used. If the alpha component is fully transparent
+for a windowless (WPF/OffScreen) browser then transparent painting will be enabled.
 </summary>
         </member>
         <member name="P:CefSharp.BrowserSettings.WebGl">
@@ -222,54 +271,6 @@ tested. Many of these and other settings can also configured using command-
 line switches.
 </summary>
         </member>
-        <member name="M:CefSharp.Internals.StringUtils.CreateExceptionString(scoped_refptr&lt;CefV8Exception&gt;)">
-            <summary>
-Creates a detailed expection string from a provided Cef V8 exception.
-</summary>
-            <param name="exception">The exception which will be used as base for the message</param>
-        </member>
-        <member name="M:CefSharp.Internals.StringUtils.AssignNativeFromClr(_cef_string_utf16_t*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.String)">
-            <summary>
-Assigns the provided cef_string_t object from the given .NET string.
-</summary>
-            <param name="cefStr">The cef_string_t that should be updated.</param>
-            <param name="str">The .NET string whose value should be used to update cefStr.</param>
-        </member>
-        <member name="M:CefSharp.Internals.StringUtils.ToNative(System.Collections.Generic.IEnumerable`1{System.String})">
-            <summary>
-Converts a .NET List of strings to native (unmanaged) format.
-</summary>
-            <param name="str">The List of strings that should be converted.</param>
-            <returns>An unmanaged representation of the provided List of strings, or an empty List if the input is a nullptr.</returns>
-        </member>
-        <member name="M:CefSharp.Internals.StringUtils.ToNative(System.String)">
-            <summary>
-Converts a .NET string to native (unmanaged) format. Note that this method does not allocate a new copy of the
-</summary>
-            <param name="str">The string that should be converted.</param>
-            <returns>An unmanaged representation of the provided string, or an empty string if the input string is a nullptr.</returns>
-        </member>
-        <member name="M:CefSharp.Internals.StringUtils.ToClr(std.vector&lt;CefStringBase&lt;CefStringTraitsUTF16&gt;,std.allocator&lt;CefStringBase&lt;CefStringTraitsUTF16&gt;&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-            <summary>
-Converts an unmanaged vector of strings to a (managed) .NET List of strings.
-</summary>
-            <param name="cefStr">The vector of strings that should be converted.</param>
-            <returns>A .NET List of strings.</returns>
-        </member>
-        <member name="M:CefSharp.Internals.StringUtils.ToClr(CefStringBase&lt;CefStringTraitsUTF16&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-            <summary>
-Converts an unmanaged string to a (managed) .NET string.
-</summary>
-            <param name="cefStr">The string that should be converted.</param>
-            <returns>A .NET string.</returns>
-        </member>
-        <member name="M:CefSharp.Internals.StringUtils.ToClr(_cef_string_utf16_t!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-            <summary>
-Converts an unmanaged string to a (managed) .NET string.
-</summary>
-            <param name="cefStr">The string that should be converted.</param>
-            <returns>A .NET string.</returns>
-        </member>
         <member name="M:CefSharp.Cef.RegisterWidevineCdmAsync(System.String)">
             <summary>
 Register the Widevine CDM plugin.
@@ -327,6 +328,17 @@ will be executed asynchronously once registration is complete</param>
 Sets or clears a specific key-value pair from the crash metadata.
 </summary>
         </member>
+        <member name="M:CefSharp.Cef.ColorSetARGB(System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+Helper function (wrapper around the CefColorSetARGB macro) which combines
+the 4 color components into an uint32 for use with BackgroundColor property
+</summary>
+            <param name="a">Alpha</param>
+            <param name="r">Red</param>
+            <param name="g">Green</param>
+            <param name="b">Blue</param>
+            <returns>Returns the color.</returns>
+        </member>
         <member name="M:CefSharp.Cef.GetGlobalRequestContext">
             <summary>
 Gets the Global Request Context. Make sure to Dispose of this object when finished.
@@ -338,22 +350,6 @@ Gets the Global Request Context. Make sure to Dispose of this object when finish
 Returns true if called on the specified CEF thread.
 </summary>
             <returns>Returns true if called on the specified thread.</returns>
-        </member>
-        <member name="M:CefSharp.Cef.GetGeolocationAsync">
-            <summary>
-Request a one-time geolocation update.
-This function bypasses any user permission checks so should only be
-used by code that is allowed to access location information. 
-</summary>
-            <returns>Returns 'best available' location info or, if the location update failed, with error info.</returns>
-        </member>
-        <member name="M:CefSharp.Cef.GetGeolocation(CefSharp.IGetGeolocationCallback)">
-            <summary>
-Request a one-time geolocation update.
-This function bypasses any user permission checks so should only be
-used by code that is allowed to access location information. 
-</summary>
-            <returns>Returns 'best available' location info or, if the location update failed, with error info.</returns>
         </member>
         <member name="M:CefSharp.Cef.EnableHighDPISupport">
             <summary>
@@ -393,7 +389,7 @@ Clear all registered scheme handler factories.
         </member>
         <member name="M:CefSharp.Cef.ShutdownWithoutChecks">
             <summary>
-This method should only be used by advanced users, if your unsure then use Cef.Shutdown().
+This method should only be used by advanced users, if you're unsure then use Cef.Shutdown().
 This function should be called on the main application thread to shut down
 the CEF browser process before the application exits. This method simply obtains a lock
 and calls the native CefShutdown method, only IsInitialized is checked. All ChromiumWebBrowser
@@ -412,10 +408,22 @@ This method must be called on the same thread as Initialize. If you don't call S
 versions will do their best to call Shutdown for you, if your application is having trouble closing then call thus explicitly.
 </summary>
         </member>
+        <member name="M:CefSharp.Cef.GetBlockingCookieManager">
+            <summary>
+ Returns a cookie manager that neither stores nor retrieves cookies. All
+usage of cookies will be blocked including cookies accessed via the network
+(request/response headers), via JavaScript (document.cookie), and via
+CefCookieManager methods. No cookies will be displayed in DevTools. If you
+wish to only block cookies sent via the network use the IRequestHandler
+CanGetCookies and CanSetCookie methods instead.
+</summary>
+            <returns>A blocking cookie manager</returns>
+        </member>
         <member name="M:CefSharp.Cef.GetGlobalCookieManager">
             <summary>
 Returns the global cookie manager.
 </summary>
+            <returns>A the global cookie manager</returns>
         </member>
         <member name="M:CefSharp.Cef.ClearCrossOriginWhitelist">
             <summary>Remove all entries from the cross-origin access whitelist.</summary>
@@ -445,6 +453,7 @@ Remove an entry from the cross-origin access whitelist. Returns false if
             <param name="allowTargetSubdomains">If set to true would allow a blah.example.com if the 
     <paramref name="targetDomain" /> was set to example.com
 </param>
+            <returns>Returns false if is invalid or the whitelist cannot be accessed.</returns>
             <remarks>
 The same-origin policy restricts how scripts hosted from different origins
 (scheme + domain + port) can communicate. By default, scripts can only access
@@ -520,7 +529,7 @@ CefSettings.MultiThreadedMessageLoop value of false. This function will
 block until a quit message is received by the system.
 </summary>
         </member>
-        <member name="M:CefSharp.Cef.Initialize(CefSharp.CefSettings,System.Boolean,CefSharp.IBrowserProcessHandler)">
+        <member name="M:CefSharp.Cef.Initialize(CefSharp.AbstractCefSettings,System.Boolean,CefSharp.IBrowserProcessHandler)">
             <summary>
 Initializes CefSharp with user-provided settings.
 It's important to note that Initialize/Shutdown <strong>MUST</strong> be called on your main
@@ -531,7 +540,7 @@ threads, your application will hang. See the documentation for Cef.Shutdown() fo
             <param name="performDependencyCheck">Check that all relevant dependencies avaliable, throws exception if any are missing</param>
             <returns>true if successful; otherwise, false.</returns>
         </member>
-        <member name="M:CefSharp.Cef.Initialize(CefSharp.CefSettings)">
+        <member name="M:CefSharp.Cef.Initialize(CefSharp.AbstractCefSettings)">
             <summary>
 Initializes CefSharp with user-provided settings.
 It's important to note that Initialize and Shutdown <strong>MUST</strong> be called on your main
@@ -539,16 +548,6 @@ applicaiton thread (Typically the UI thead). If you call them on different
 threads, your application will hang. See the documentation for Cef.Shutdown() for more details.
 </summary>
             <param name="cefSettings">CefSharp configuration settings.</param>
-            <returns>true if successful; otherwise, false.</returns>
-        </member>
-        <member name="M:CefSharp.Cef.Initialize">
-            <summary>
-Initializes CefSharp with the default settings. 
-This function can only be called once, subsiquent calls will result in an Exception.
-It's important to note that Initialize and Shutdown <strong>MUST</strong> be called on your main
-applicaiton thread (Typically the UI thead). If you call them on different
-threads, your application will hang. See the documentation for Cef.Shutdown() for more details.
-</summary>
             <returns>true if successful; otherwise, false.</returns>
         </member>
         <member name="P:CefSharp.Cef.CefCommitHash">
@@ -761,6 +760,9 @@ optional handler.
             <param name="requestContextHandler">optional requestContext handler</param>
             <returns>Returns a nre RequestContext</returns>
         </member>
+        <member name="M:CefSharp.RequestContext.#ctor(CefSharp.IRequestContext)">
+Creates a new context object that shares storage with | other | and uses an optional | handler | .
+</member>
         <member name="T:CefSharp.RequestContext">
             <summary>
 A request context provides request handling for a set of related browser objects.
@@ -776,11 +778,6 @@ This will be the first request context passed into a CefBrowserHost static facto
 and all other request context objects will be ignored. 
 </summary>
         </member>
-        <member name="M:CefSharp.Internals.CefFrameWrapper.LoadRequest(CefSharp.IRequest)">
-
-Load the request represented by the |request| object.
-
-</member>
         <member name="P:CefSharp.RequestContextSettings.IgnoreCertificateErrors">
             <summary>
 Set to true to ignore errors related to invalid SSL certificates.
@@ -789,6 +786,14 @@ Enabling this setting can lead to potential security vulnerabilities like
 internet should not enable this setting. Can be set globally using the
 CefSettings.IgnoreCertificateErrors value. This value will be ignored if
 CachePath matches the CefSettings.cache_path value.
+</summary>
+        </member>
+        <member name="P:CefSharp.RequestContextSettings.EnableNetSecurityExpiration">
+            <summary>
+Set to true to enable date-based expiration of built in network security information (i.e. certificate transparency logs,
+HSTS preloading and pinning information). Enabling this option improves network security but may cause HTTPS load failures when
+using CEF binaries built more than 10 weeks in the past. See https://www.certificate-transparency.org/ and
+https://www.chromium.org/hsts for details. Can be set globally using the CefSettings.EnableNetSecurityExpiration value.
 </summary>
         </member>
         <member name="P:CefSharp.RequestContextSettings.AcceptLanguageList">
@@ -839,6 +844,11 @@ Default constructor
 RequestContextSettings
 </summary>
         </member>
+        <member name="M:CefSharp.Internals.CefFrameWrapper.LoadRequest(CefSharp.IRequest)">
+
+Load the request represented by the |request| object.
+
+</member>
         <member name="M:CefSharp.Internals.CefRegisterCdmCallbackAdapter.OnCdmRegistrationComplete(cef_cdm_registration_error_t,CefStringBase&lt;CefStringTraitsUTF16&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
             <summary>
 Method that will be called when CDM registration is complete. |result|
@@ -847,38 +857,41 @@ successfully. Otherwise, |result| and |error_message| will contain
 additional information about why registration failed.
 </summary>
         </member>
-        <member name="M:CefSharp.CefSettings.SetOffScreenRenderingBestPerformanceArgs">
+        <member name="M:CefSharp.AbstractCefSettings.SetOffScreenRenderingBestPerformanceArgs">
             <summary>
 Set command line arguments for best OSR (Offscreen and WPF) Rendering performance
 This will disable WebGL, look at the source to determine which flags best suite
 your requirements.
 </summary>
         </member>
-        <member name="M:CefSharp.CefSettings.DisableGpuAcceleration">
+        <member name="M:CefSharp.AbstractCefSettings.DisableGpuAcceleration">
             <summary>
 Set command line argument to disable GPU Acceleration, this will disable WebGL.
 </summary>
         </member>
-        <member name="M:CefSharp.CefSettings.RegisterExtension(CefSharp.CefExtension)">
+        <member name="M:CefSharp.AbstractCefSettings.RegisterExtension(CefSharp.CefExtension)">
             <summary>
 Registers an extension with the provided settings.
 </summary>
             <param name="extension">The CefExtension that contains the extension code.</param>
         </member>
-        <member name="M:CefSharp.CefSettings.RegisterScheme(CefSharp.CefCustomScheme)">
+        <member name="M:CefSharp.AbstractCefSettings.RegisterScheme(CefSharp.CefCustomScheme)">
             <summary>
 Registers a custom scheme using the provided settings.
 </summary>
             <param name="cefCustomScheme">The CefCustomScheme which provides the details about the scheme.</param>
         </member>
-        <member name="P:CefSharp.CefSettings.FocusedNodeChangedEnabled">
+        <member name="P:CefSharp.AbstractCefSettings.BackgroundColor">
             <summary>
-If true a message will be sent from the render subprocess to the
-browser when a DOM node (or no node) gets focus. The default is
-false.
+Background color used for the browser before a document is loaded and when no document color is
+specified. The alpha component must be either fully opaque (0xFF) or fully transparent (0x00).
+If the alpha component is fully opaque then the RGB components will be used as the background
+color. If the alpha component is fully transparent for a WinForms browser then the default value
+of opaque white be used. If the alpha component is fully transparent for a windowless
+(WPF/OffScreen) browser then transparent painting will be enabled.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.AcceptLanguageList">
+        <member name="P:CefSharp.AbstractCefSettings.AcceptLanguageList">
             <summary>
 Comma delimited ordered list of language codes without any whitespace that
 will be used in the "Accept-Language" HTTP header. May be set globally
@@ -886,7 +899,7 @@ using the CefSettings.AcceptLanguageList value. If both values are
 empty then "en-US,en" will be used.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.PersistUserPreferences">
+        <member name="P:CefSharp.AbstractCefSettings.PersistUserPreferences">
             <summary>
 To persist user preferences as a JSON file in the cache path directory set
 this value to true. A CachePath value must also be specified
@@ -896,7 +909,7 @@ individual RequestContext instances via the
 RequestContextSettings.PersistUserPreferences value.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.PersistSessionCookies">
+        <member name="P:CefSharp.AbstractCefSettings.PersistSessionCookies">
             <summary>
 To persist session cookies (cookies without an expiry date or validity
 interval) by default when using the global cookie manager set this value to
@@ -908,21 +921,21 @@ individual RequestContext instances via the
 RequestContextSettings.PersistSessionCookies value.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.WindowlessRenderingEnabled">
+        <member name="P:CefSharp.AbstractCefSettings.WindowlessRenderingEnabled">
             <summary>
 Set to true (1) to enable windowless (off-screen) rendering support. Do not
 enable this value if the application does not use windowless rendering as
 it may reduce rendering performance on some systems.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.UserAgent">
+        <member name="P:CefSharp.AbstractCefSettings.UserAgent">
             <summary>
 Value that will be returned as the User-Agent HTTP header. If empty the
 default User-Agent string will be used. Also configurable using the
 "user-agent" command-line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.UncaughtExceptionStackSize">
+        <member name="P:CefSharp.AbstractCefSettings.UncaughtExceptionStackSize">
             <summary>
 The number of stack trace frames to capture for uncaught exceptions.
 Specify a positive value to enable the CefRenderProcessHandler::
@@ -931,7 +944,7 @@ OnUncaughtException() will not be called. Also configurable using the
 "uncaught-exception-stack-size" command-line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.RemoteDebuggingPort">
+        <member name="P:CefSharp.AbstractCefSettings.RemoteDebuggingPort">
             <summary>
 Set to a value between 1024 and 65535 to enable remote debugging on the
 specified port. For example, if 8080 is specified the remote debugging URL
@@ -940,7 +953,7 @@ Chrome browser window. Also configurable using the "remote-debugging-port"
 command-line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.ProductVersion">
+        <member name="P:CefSharp.AbstractCefSettings.ProductVersion">
             <summary>
 Value that will be inserted as the product portion of the default
 User-Agent string. If empty the Chromium product version will be used. If
@@ -948,7 +961,7 @@ User-Agent string. If empty the Chromium product version will be used. If
 using the "product-version" command-line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.PackLoadingDisabled">
+        <member name="P:CefSharp.AbstractCefSettings.PackLoadingDisabled">
             <summary>
 Set to true to disable loading of pack files for resources and locales.
 A resource bundle handler must be provided for the browser and render
@@ -957,14 +970,14 @@ is disabled. Also configurable using the "disable-pack-loading" command-
 line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.JavascriptFlags">
+        <member name="P:CefSharp.AbstractCefSettings.JavascriptFlags">
             <summary>
 Custom flags that will be used when initializing the V8 JavaScript engine.
 The consequences of using custom flags may not be well tested. Also
 configurable using the "js-flags" command-line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.LogSeverity">
+        <member name="P:CefSharp.AbstractCefSettings.LogSeverity">
             <summary>
 The log severity. Only messages of this severity level or higher will be
 logged. Also configurable using the "log-severity" command-line switch with
@@ -972,7 +985,7 @@ a value of "verbose", "info", "warning", "error", "error-report" or
 "disable".
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.LogFile">
+        <member name="P:CefSharp.AbstractCefSettings.LogFile">
             <summary>
 The directory and file name to use for the debug log. If empty a default
 log file name and location will be used. On Windows and Linux a "debug.log"
@@ -980,7 +993,7 @@ file will be written in the main executable directory.
 Also configurable using the"log-file" command-line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.ResourcesDirPath">
+        <member name="P:CefSharp.AbstractCefSettings.ResourcesDirPath">
             <summary>
 The fully qualified path for the resources directory. If this value is
 empty the cef.pak and/or devtools_resources.pak files must be located in
@@ -988,27 +1001,27 @@ the module directory. Also configurable using the "resources-dir-path" command-l
 switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.LocalesDirPath">
+        <member name="P:CefSharp.AbstractCefSettings.LocalesDirPath">
             <summary>
 The fully qualified path for the locales directory. If this value is empty
 the locales directory must be located in the module directory.
 Also configurable using the "locales-dir-path" command-line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.Locale">
+        <member name="P:CefSharp.AbstractCefSettings.Locale">
             <summary>
 The locale string that will be passed to WebKit. If empty the default
 locale of "en-US" will be used. Also configurable using the "lang"
 command-line switch.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.IgnoreCertificateErrors">
+        <member name="P:CefSharp.AbstractCefSettings.IgnoreCertificateErrors">
             <summary>
 Set to true in order to completely ignore SSL certificate errors.
 This is NOT recommended.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.UserDataPath">
+        <member name="P:CefSharp.AbstractCefSettings.UserDataPath">
             <summary>
 The location where user data such as spell checking dictionary files will
 be stored on disk. If empty then the default platform-specific user data
@@ -1018,7 +1031,7 @@ directory will be used ("~/.cef_user_data" directory on Linux,
 profile directory on Windows).
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.CachePath">
+        <member name="P:CefSharp.AbstractCefSettings.CachePath">
             <summary>
 The location where cache data will be stored on disk. If empty then
 browsers will be created in "incognito mode" where in-memory caches are
@@ -1028,7 +1041,7 @@ specified. Can be overridden for individual CefRequestContext instances via
 the RequestContextSettings.CachePath value.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.BrowserSubprocessPath">
+        <member name="P:CefSharp.AbstractCefSettings.BrowserSubprocessPath">
             <summary>
 The path to a separate executable that will be launched for sub-processes.
 By default the browser process executable is used. See the comments on
@@ -1036,14 +1049,14 @@ Cef.ExecuteProcess() for details. Also configurable using the
 "browser-subprocess-path" command-line switch. Default is CefSharp.BrowserSubprocess.exe
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.MultiThreadedMessageLoop">
+        <member name="P:CefSharp.AbstractCefSettings.MultiThreadedMessageLoop">
             <summary>
 thread. If false than the CefDoMessageLoopWork() function must be
 called from your application message loop. This option is only supported on
 Windows. The default value is true
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.ExternalMessagePump">
+        <member name="P:CefSharp.AbstractCefSettings.ExternalMessagePump">
             <summary>
 Set to true to control browser process main (UI) thread message pump
 scheduling via the IBrowserProcessHandler.OnScheduleMessagePumpWork
@@ -1055,39 +1068,128 @@ recommended for most users; leave this option disabled and use either
 MultiThreadedMessageLoop (the default) if possible.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.CommandLineArgsDisabled">
+        <member name="P:CefSharp.AbstractCefSettings.CommandLineArgsDisabled">
             <summary>
 Set to true to disable configuration of browser process features using
 standard CEF and Chromium command-line arguments. Configuration can still
 be specified using CEF data structures or by adding to CefCommandLineArgs
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.CefCommandLineArgs">
+        <member name="P:CefSharp.AbstractCefSettings.CefCommandLineArgs">
             <summary>
 Add custom command line argumens to this collection, they will be
 added in OnBeforeCommandLineProcessing.
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.Extensions">
+        <member name="P:CefSharp.AbstractCefSettings.Extensions">
             <summary>
 Add CefExtensions to be registered
 </summary>
         </member>
-        <member name="P:CefSharp.CefSettings.CefCustomSchemes">
+        <member name="P:CefSharp.AbstractCefSettings.CefCustomSchemes">
             <summary>
 Add Customs schemes to this collection
 </summary>
         </member>
-        <member name="M:CefSharp.CefSettings.#ctor">
+        <member name="M:CefSharp.AbstractCefSettings.#ctor">
             <summary>
 Default Constructor
 </summary>
         </member>
-        <member name="T:CefSharp.CefSettings">
+        <member name="T:CefSharp.AbstractCefSettings">
             <summary>
 Initialization settings. Many of these and other settings can also configured
 using command-line switches.
 </summary>
+        </member>
+        <member name="P:CefSharp.Internals.CefDragDataWrapper.ImageHotspot">
+            <summary>
+Get the image hotspot (drag start location relative to image dimensions).
+</summary>
+        </member>
+        <member name="P:CefSharp.Internals.CefDragDataWrapper.Image">
+            <summary>
+Get the image representation of drag data.
+May return NULL if no image representation is available.
+</summary>
+        </member>
+        <member name="P:CefSharp.Internals.CefImageWrapper.Width">
+            <summary>
+Returns the image width in density independent pixel(DIP) units.
+</summary>
+        </member>
+        <member name="M:CefSharp.Internals.CefImageWrapper.RemoveRepresentation(System.Single)">
+            <summary>
+Removes the representation for scaleFactor.
+</summary>
+            <param name="scaleFactor" />
+            <returns>true for success</returns>
+        </member>
+        <member name="M:CefSharp.Internals.CefImageWrapper.IsSame(CefSharp.IImage)">
+            <summary>
+Returns true if this Image and that Image share the same underlying storage.
+</summary>
+            <param name="that">image to compare</param>
+            <returns>returns true if share same underlying storage</returns>
+        </member>
+        <member name="P:CefSharp.Internals.CefImageWrapper.IsEmpty">
+            <summary>
+Returns true if this Image is empty.
+</summary>
+            <returns />
+        </member>
+        <member name="M:CefSharp.Internals.CefImageWrapper.HasRepresentation(System.Single)">
+            <summary>
+Returns true if this image contains a representation for scaleFactor.
+</summary>
+            <param name="scaleFactor" />
+            <returns />
+        </member>
+        <member name="P:CefSharp.Internals.CefImageWrapper.Height">
+            <summary>
+Returns the image height in density independent pixel(DIP) units.
+</summary>
+        </member>
+        <member name="M:CefSharp.Internals.CefImageWrapper.GetRepresentationInfo(System.Single,System.Single@,System.Int32@,System.Int32@)">
+            <summary>
+Returns information for the representation that most closely matches scaleFactor.
+</summary>
+            <param name="scaleFactor">scale factor</param>
+            <param name="actualScaleFactor">actual scale factor</param>
+            <param name="pixelWidth">pixel width</param>
+            <param name="pixelHeight">pixel height</param>
+            <returns>return if information found for scale factor</returns>
+        </member>
+        <member name="M:CefSharp.Internals.CefImageWrapper.GetAsPNG(System.Single,System.Boolean,System.Int32@,System.Int32@)">
+            <summary>
+Returns the PNG representation that most closely matches scaleFactor.
+</summary>
+            <param name="scaleFactor">scale factor</param>
+            <param name="withTransparency">is the PNG transparent</param>
+            <param name="pixelWidth">pixel width</param>
+            <param name="pixelHeight">pixel height</param>
+            <returns>A stream represending the PNG or null.</returns>
+        </member>
+        <member name="M:CefSharp.Internals.CefImageWrapper.GetAsJPEG(System.Single,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+Returns the JPEG representation that most closely matches scaleFactor.
+</summary>
+            <param name="scaleFactor">scale factor</param>
+            <param name="quality">image quality</param>
+            <param name="pixelWidth">pixel width</param>
+            <param name="pixelHeight">pixel height</param>
+            <returns>A stream representing the JPEG or null.</returns>
+        </member>
+        <member name="M:CefSharp.Internals.CefImageWrapper.GetAsBitmap(System.Single,CefSharp.Enums.ColorType,CefSharp.Enums.AlphaType,System.Int32@,System.Int32@)">
+            <summary>
+Returns the bitmap representation that most closely matches scaleFactor.
+</summary>
+            <param name="scaleFactor">scale factor</param>
+            <param name="colorType">color type</param>
+            <param name="alphaType">alpha type</param>
+            <param name="pixelWidth">pixel width</param>
+            <param name="pixelHeight">pixel height</param>
+            <returns>A stream represending the bitmap or null.</returns>
         </member>
         <!-- Discarding badly formed XML document comment for member 'P:CefSharp.Cef.CrashReportingEnabled'. -->
         <!-- Discarding badly formed XML document comment for member 'P:CefSharp.Cef.CrashReportingEnabled'. -->
