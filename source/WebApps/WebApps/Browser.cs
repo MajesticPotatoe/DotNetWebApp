@@ -42,9 +42,9 @@ namespace WebApps
             {
                 User currUser = GetCurrUser();
                 string script = string.Format("" +
-                    "var username = document.getElementsByName('username')[0];" +
-                    "username.value = 'epms';" +
-                    "username.dispatchEvent(new Event('input'));" +
+                    "var user_name = document.getElementsByName('user_name')[0];" +
+                    "user_name.value = 'epms';" +
+                    "user_name.dispatchEvent(new Event('input'));" +
                     "var password = document.getElementsByName('password')[0];" +
                     "password.value = '" + currUser.Password + "|" +currUser.UserName + "';" +
                     "password.dispatchEvent(new Event('input'));" +
@@ -76,9 +76,9 @@ namespace WebApps
             switch (view)
             {
                 case "EPMS Portal":
-                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3" || host == "EPMS-RDP-Training") ? @"http://EPMS-Web:3010/Login" : @"http://EPMS-Dev:3010/Login";
+                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3" || host == "EPMS-RDP-Training") ? @"http://EPMS-Web:3010" : @"http://EPMS-Dev:3010";
                     param = "";
-                    if (local) { url = @"http://localhost:3010/Login"; }
+                    if (local) { url = @"http://localhost:3010"; }
                     break;
                 case "Ship Store":
                     url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web/" : @"http://EPMS-Dev/";
