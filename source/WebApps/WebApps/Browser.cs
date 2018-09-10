@@ -76,9 +76,9 @@ namespace WebApps
             switch (view)
             {
                 case "EPMS Portal":
-                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3" || host == "EPMS-RDP-Training") ? @"http://EPMS-Web:3010/Login" : @"http://EPMS-Dev:3010/Login";
+                    url = (host == "EPMS-RDP2" || host == "EPMS-RDP3" || host == "EPMS-RDP-Training") ? @"http://EPMS-Web:3010" : @"http://EPMS-Dev:3010";
                     param = "";
-                    if (local) { url = @"http://localhost:3010/Login"; }
+                    if (local) { url = @"http://localhost:3010"; }
                     break;
                 case "Ship Store":
                     url = (host == "EPMS-RDP2" || host == "EPMS-RDP3") ? @"http://EPMS-Web/" : @"http://EPMS-Dev/";
