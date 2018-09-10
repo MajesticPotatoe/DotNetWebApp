@@ -4,44 +4,62 @@
         <name>CefSharp.WinForms</name>
     </assembly>
     <members>
+        <member name="T:CefSharp.WinForms.CefSettings">
+            <summary>
+            Initialization settings. Many of these and other settings can also configured
+            using command-line switches.
+            </summary>
+        </member>
+        <member name="T:CefSharp.WinForms.ChromiumWebBrowserDesigner">
+            <summary>
+            ChromiumWebBrowser Control Designer
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowserDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Receives a call when the control that the designer is managing has painted its surface so the designer can paint any additional adornments on top of the control.
+            </summary>
+            <param name="pe">args</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowserDesigner.PreFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Adjusts the set of properties the component exposes through a TypeDescriptor.
+            </summary>
+            <param name="properties">properties</param>
+        </member>
         <member name="T:CefSharp.WinForms.Internals.DefaultFocusHandler">
             <summary>
-            Default implementation of <see cref="T:CefSharp.IFocusHandler"/>
+            Default implementation of <see cref="T:CefSharp.IFocusHandler" />
             for the WinForms implementation
             </summary>
-            <seealso cref="T:CefSharp.IFocusHandler"/>
+            <seealso cref="T:CefSharp.IFocusHandler" />
         </member>
-        <member name="F:CefSharp.WinForms.Internals.DefaultFocusHandler.browser">
-            <summary>
-            The browser
-            </summary>
-        </member>
-        <member name="M:CefSharp.WinForms.Internals.DefaultFocusHandler.#ctor(CefSharp.WinForms.ChromiumWebBrowser)">
-            <summary>
-            Initializes a new instance of the <see cref="T:CefSharp.WinForms.Internals.DefaultFocusHandler"/> class.
-            </summary>
-            <param name="browser">The browser.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.Internals.DefaultFocusHandler.OnGotFocus">
+        <member name="M:CefSharp.WinForms.Internals.DefaultFocusHandler.OnGotFocus(CefSharp.IWebBrowser,CefSharp.IBrowser)">
             <summary>
             Called when the browser component has received focus.
             </summary>
+            <param name="chromiumWebBrowser">the ChromiumWebBrowser control</param>
+            <param name="browser">the browser object</param>
             <remarks>Try to avoid needing to override this logic in a subclass. The implementation in
             DefaultFocusHandler relies on very detailed behavior of how WinForms and
             Windows interact during window activation.</remarks>
         </member>
-        <member name="M:CefSharp.WinForms.Internals.DefaultFocusHandler.OnSetFocus(CefSharp.CefFocusSource)">
+        <member name="M:CefSharp.WinForms.Internals.DefaultFocusHandler.OnSetFocus(CefSharp.IWebBrowser,CefSharp.IBrowser,CefSharp.CefFocusSource)">
             <summary>
             Called when the browser component is requesting focus.
             </summary>
+            <param name="chromiumWebBrowser">the ChromiumWebBrowser control</param>
+            <param name="browser">the browser object</param>
             <param name="source">Indicates where the focus request is originating from.</param>
             <returns>Return false to allow the focus to be set or true to cancel setting the focus.</returns>
         </member>
-        <member name="M:CefSharp.WinForms.Internals.DefaultFocusHandler.OnTakeFocus(System.Boolean)">
+        <member name="M:CefSharp.WinForms.Internals.DefaultFocusHandler.OnTakeFocus(CefSharp.IWebBrowser,CefSharp.IBrowser,System.Boolean)">
             <summary>
             Called when the browser component is about to lose focus.
             For instance, if focus was on the last HTML element and the user pressed the TAB key.
             </summary>
+            <param name="chromiumWebBrowser">the ChromiumWebBrowser control</param>
+            <param name="browser">the browser object</param>
             <param name="next">Will be true if the browser is giving focus to the next component
             and false if the browser is giving focus to the previous component.</param>
         </member>
@@ -84,8 +102,8 @@
             ParentFormMessageInterceptor - hooks into the parent forms
             message loop to incercept messages like WM_MOVE
             </summary>
-            <seealso cref="T:System.Windows.Forms.NativeWindow"/>
-            <seealso cref="T:System.IDisposable"/>
+            <seealso cref="T:System.Windows.Forms.NativeWindow" />
+            <seealso cref="T:System.IDisposable" />
         </member>
         <member name="F:CefSharp.WinForms.Internals.ParentFormMessageInterceptor.isMoving">
             <summary>
@@ -96,6 +114,18 @@
             <summary>
             Used to determine the coordinates involved in the move
             </summary>
+        </member>
+        <member name="P:CefSharp.WinForms.Internals.ParentFormMessageInterceptor.Browser">
+            <summary>
+            Gets or sets the browser.
+            </summary>
+            <value>The browser.</value>
+        </member>
+        <member name="P:CefSharp.WinForms.Internals.ParentFormMessageInterceptor.ParentForm">
+            <summary>
+            Gets or sets the parent form.
+            </summary>
+            <value>The parent form.</value>
         </member>
         <member name="M:CefSharp.WinForms.Internals.ParentFormMessageInterceptor.#ctor(CefSharp.WinForms.ChromiumWebBrowser)">
             <summary>
@@ -114,18 +144,18 @@
             Adjust the form to listen to if the ChromiumWebBrowserControl's parent changes.
             </summary>
             <param name="sender">The ChromiumWebBrowser whose parent has changed.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+            <param name="e">The <see cref="T:System.EventArgs" /> instance containing the event data.</param>
         </member>
         <member name="M:CefSharp.WinForms.Internals.ParentFormMessageInterceptor.OnHandleCreated(System.Object,System.EventArgs)">
             <summary>
-            Handles the <see cref="E:HandleCreated"/> event.
+            Handles the <see cref="E:HandleCreated" /> event.
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
         </member>
         <member name="M:CefSharp.WinForms.Internals.ParentFormMessageInterceptor.OnHandleDestroyed(System.Object,System.EventArgs)">
             <summary>
-            Handles the <see cref="E:HandleDestroyed"/> event.
+            Handles the <see cref="E:HandleDestroyed" /> event.
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
@@ -158,18 +188,6 @@
             </summary>
             <param name="e">An <see cref="T:System.Exception" /> that specifies the unhandled thread exception.</param>
         </member>
-        <member name="P:CefSharp.WinForms.Internals.ParentFormMessageInterceptor.Browser">
-            <summary>
-            Gets or sets the browser.
-            </summary>
-            <value>The browser.</value>
-        </member>
-        <member name="P:CefSharp.WinForms.Internals.ParentFormMessageInterceptor.ParentForm">
-            <summary>
-            Gets or sets the parent form.
-            </summary>
-            <value>The parent form.</value>
-        </member>
         <member name="T:CefSharp.WinForms.Internals.NativeMethods">
             <summary>
             Class NativeMethods.
@@ -193,9 +211,9 @@
         <member name="T:CefSharp.WinForms.IWinFormsWebBrowser">
             <summary>
             WinForms specific implementation, has events the
-            <see cref="T:CefSharp.WinForms.ChromiumWebBrowser"/> implementation exposes.
+            <see cref="T:CefSharp.WinForms.ChromiumWebBrowser" /> implementation exposes.
             </summary>
-            <seealso cref="T:CefSharp.IWebBrowser"/>
+            <seealso cref="T:CefSharp.IWebBrowser" />
         </member>
         <member name="E:CefSharp.WinForms.IWinFormsWebBrowser.TitleChanged">
             <summary>
@@ -217,9 +235,9 @@
             <summary>
             ChromiumWebBrowser is the WinForms web browser control
             </summary>
-            <seealso cref="T:System.Windows.Forms.Control"/>
-            <seealso cref="T:CefSharp.Internals.IWebBrowserInternal"/>
-            <seealso cref="T:CefSharp.WinForms.IWinFormsWebBrowser"/>
+            <seealso cref="T:System.Windows.Forms.Control" />
+            <seealso cref="T:CefSharp.Internals.IWebBrowserInternal" />
+            <seealso cref="T:CefSharp.WinForms.IWinFormsWebBrowser" />
         </member>
         <member name="F:CefSharp.WinForms.ChromiumWebBrowser.managedCefBrowserAdapter">
             <summary>
@@ -258,182 +276,6 @@
             The request context (we deliberately use a private variable so we can throw an exception if
             user attempts to set after browser created)
             </summary>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#cctor">
-            <summary>
-            Initializes static members of the <see cref="T:CefSharp.WinForms.ChromiumWebBrowser"/> class.
-            </summary>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.OnApplicationExit(System.Object,System.EventArgs)">
-            <summary>
-            Handles the <see cref="E:ApplicationExit"/> event.
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:CefSharp.WinForms.ChromiumWebBrowser"/> class.
-            NOTE: Should only be used by the designer
-            </summary>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#ctor(System.String,CefSharp.IRequestContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:CefSharp.WinForms.ChromiumWebBrowser"/> class.
-            </summary>
-            <param name="address">The address.</param>
-            <param name="requestContext">Request context that will be used for this browser instance,
-            if null the Global Request Context will be used</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.InitializeFieldsAndCefIfRequired">
-            <summary>
-            Required for designer support - this method cannot be inlined as the designer
-            will attempt to load libcef.dll and will subsiquently throw an exception.
-            TODO: Still not happy with this method name, need something better
-            </summary>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.Dispose(System.Boolean)">
-            <summary>
-            Releases the unmanaged resources used by the <see cref="T:System.Windows.Forms.Control" /> and its child controls and optionally releases the managed resources.
-            </summary>
-            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.RemoveFromListOfCefBrowsers">
-            <summary>
-            Required for designer support - this method cannot be inlined as the designer
-            will attempt to load libcef.dll and will subsiquently throw an exception.
-            </summary>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.FreeUnmanagedResources">
-            <summary>
-            Required for designer support - this method cannot be inlined as the designer
-            will attempt to load libcef.dll and will subsiquently throw an exception.
-            </summary>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.Load(System.String)">
-            <summary>
-            Loads the specified URL.
-            </summary>
-            <param name="url">The URL to be loaded.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.RegisterJsObject(System.String,System.Object,CefSharp.BindingOptions)">
-            <summary>
-            Registers a Javascript object in this specific browser instance.
-            </summary>
-            <param name="name">The name of the object. (e.g. "foo", if you want the object to be accessible as window.foo).</param>
-            <param name="objectToBind">The object to be made accessible to Javascript.</param>
-            <param name="options">binding options - camelCaseJavascriptNames default to true </param>
-            <exception cref="T:System.Exception">Browser is already initialized. RegisterJsObject must be +
-                                                called before the underlying CEF browser is created.</exception>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.RegisterAsyncJsObject(System.String,System.Object,CefSharp.BindingOptions)">
-            <summary>
-            <para>Asynchronously registers a Javascript object in this specific browser instance.</para>
-            <para>Only methods of the object will be availabe.</para>
-            </summary>
-            <param name="name">The name of the object. (e.g. "foo", if you want the object to be accessible as window.foo).</param>
-            <param name="objectToBind">The object to be made accessible to Javascript.</param>
-            <param name="options">binding options - camelCaseJavascriptNames default to true </param>
-            <exception cref="T:System.Exception">Browser is already initialized. RegisterJsObject must be +
-                                                called before the underlying CEF browser is created.</exception>
-            <remarks>The registered methods can only be called in an async way, they will all return immeditaly and the resulting
-            object will be a standard javascript Promise object which is usable to wait for completion or failure.</remarks>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.OnHandleCreated(System.EventArgs)">
-            <summary>
-            Raises the <see cref="E:System.Windows.Forms.Control.HandleCreated" /> event.
-            </summary>
-            <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnAfterBrowserCreated(CefSharp.IBrowser)">
-            <summary>
-            Called after browser created.
-            </summary>
-            <param name="browser">The browser.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#SetAddress(CefSharp.AddressChangedEventArgs)">
-            <summary>
-            Sets the address.
-            </summary>
-            <param name="args">The <see cref="T:CefSharp.AddressChangedEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#SetLoadingStateChange(CefSharp.LoadingStateChangedEventArgs)">
-            <summary>
-            Sets the loading state change.
-            </summary>
-            <param name="args">The <see cref="T:CefSharp.LoadingStateChangedEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#SetTitle(CefSharp.TitleChangedEventArgs)">
-            <summary>
-            Sets the title.
-            </summary>
-            <param name="args">The <see cref="T:CefSharp.TitleChangedEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#SetTooltipText(System.String)">
-            <summary>
-            Sets the tooltip text.
-            </summary>
-            <param name="tooltipText">The tooltip text.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnFrameLoadStart(CefSharp.FrameLoadStartEventArgs)">
-            <summary>
-            Handles the <see cref="E:FrameLoadStart"/> event.
-            </summary>
-            <param name="args">The <see cref="T:CefSharp.FrameLoadStartEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnFrameLoadEnd(CefSharp.FrameLoadEndEventArgs)">
-            <summary>
-            Handles the <see cref="E:FrameLoadEnd"/> event.
-            </summary>
-            <param name="args">The <see cref="T:CefSharp.FrameLoadEndEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnConsoleMessage(CefSharp.ConsoleMessageEventArgs)">
-            <summary>
-            Handles the <see cref="E:ConsoleMessage"/> event.
-            </summary>
-            <param name="args">The <see cref="T:CefSharp.ConsoleMessageEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnStatusMessage(CefSharp.StatusMessageEventArgs)">
-            <summary>
-            Handles the <see cref="E:StatusMessage"/> event.
-            </summary>
-            <param name="args">The <see cref="T:CefSharp.StatusMessageEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnLoadError(CefSharp.LoadErrorEventArgs)">
-            <summary>
-            Handles the <see cref="E:LoadError"/> event.
-            </summary>
-            <param name="args">The <see cref="T:CefSharp.LoadErrorEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.OnSizeChanged(System.EventArgs)">
-            <summary>
-            Raises the <see cref="E:System.Windows.Forms.Control.SizeChanged" /> event.
-            </summary>
-            <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.ResizeBrowser">
-            <summary>
-            Resizes the browser.
-            </summary>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.OnGotFocus(System.EventArgs)">
-            <summary>
-            Raises the <see cref="E:System.Windows.Forms.Control.GotFocus" /> event.
-            </summary>
-            <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.GetBrowser">
-            <summary>
-            Returns the current IBrowser Instance
-            </summary>
-            <returns>browser instance or null</returns>
-        </member>
-        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.IsInputKey(System.Windows.Forms.Keys)">
-            <summary>
-            Makes certain keys as Input keys when CefSettings.MultiThreadedMessageLoop = false
-            </summary>
-            <param name="keyData">key data</param>
-            <returns>true for a select list of keys otherwise defers to base.IsInputKey</returns>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.IsActivating">
             <summary>
@@ -479,73 +321,73 @@
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.DialogHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IDialogHandler"/> and assign to handle dialog events.
+            Implement <see cref="T:CefSharp.IDialogHandler" /> and assign to handle dialog events.
             </summary>
             <value>The dialog handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.JsDialogHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IJsDialogHandler"/> and assign to handle events related to JavaScript Dialogs.
+            Implement <see cref="T:CefSharp.IJsDialogHandler" /> and assign to handle events related to JavaScript Dialogs.
             </summary>
             <value>The js dialog handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.KeyboardHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IKeyboardHandler"/> and assign to handle events related to key press.
+            Implement <see cref="T:CefSharp.IKeyboardHandler" /> and assign to handle events related to key press.
             </summary>
             <value>The keyboard handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.RequestHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IRequestHandler"/> and assign to handle events related to browser requests.
+            Implement <see cref="T:CefSharp.IRequestHandler" /> and assign to handle events related to browser requests.
             </summary>
             <value>The request handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.DownloadHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IDownloadHandler"/> and assign to handle events related to downloading files.
+            Implement <see cref="T:CefSharp.IDownloadHandler" /> and assign to handle events related to downloading files.
             </summary>
             <value>The download handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.LoadHandler">
             <summary>
-            Implement <see cref="T:CefSharp.ILoadHandler"/> and assign to handle events related to browser load status.
+            Implement <see cref="T:CefSharp.ILoadHandler" /> and assign to handle events related to browser load status.
             </summary>
             <value>The load handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.LifeSpanHandler">
             <summary>
-            Implement <see cref="T:CefSharp.ILifeSpanHandler"/> and assign to handle events related to popups.
+            Implement <see cref="T:CefSharp.ILifeSpanHandler" /> and assign to handle events related to popups.
             </summary>
             <value>The life span handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.DisplayHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IDisplayHandler"/> and assign to handle events related to browser display state.
+            Implement <see cref="T:CefSharp.IDisplayHandler" /> and assign to handle events related to browser display state.
             </summary>
             <value>The display handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.MenuHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IContextMenuHandler"/> and assign to handle events related to the browser context menu
+            Implement <see cref="T:CefSharp.IContextMenuHandler" /> and assign to handle events related to the browser context menu
             </summary>
             <value>The menu handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.RenderProcessMessageHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IRenderProcessMessageHandler"/> and assign to handle messages from the render process.
+            Implement <see cref="T:CefSharp.IRenderProcessMessageHandler" /> and assign to handle messages from the render process.
             </summary>
             <value>The render process message handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.FindHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IFindHandler"/> to handle events related to find results.
+            Implement <see cref="T:CefSharp.IFindHandler" /> to handle events related to find results.
             </summary>
             <value>The find handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.FocusHandler">
             <summary>
-            The <see cref="T:CefSharp.IFocusHandler"/> for this ChromiumWebBrowser.
+            The <see cref="T:CefSharp.IFocusHandler" /> for this ChromiumWebBrowser.
             </summary>
             <value>The focus handler.</value>
             <remarks>If you need customized focus handling behavior for WinForms, the suggested
@@ -556,21 +398,15 @@
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.DragHandler">
             <summary>
-            Implement <see cref="T:CefSharp.IDragHandler"/> and assign to handle events related to dragging.
+            Implement <see cref="T:CefSharp.IDragHandler" /> and assign to handle events related to dragging.
             </summary>
             <value>The drag handler.</value>
         </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.ResourceHandlerFactory">
             <summary>
-            Implement <see cref="T:CefSharp.IResourceHandlerFactory"/> and control the loading of resources
+            Implement <see cref="T:CefSharp.IResourceHandlerFactory" /> and control the loading of resources
             </summary>
             <value>The resource handler factory.</value>
-        </member>
-        <member name="P:CefSharp.WinForms.ChromiumWebBrowser.GeolocationHandler">
-            <summary>
-            Implement <see cref="T:CefSharp.IGeolocationHandler"/> and assign to handle requests for permission to use geolocation.
-            </summary>
-            <value>The geolocation handler.</value>
         </member>
         <member name="E:CefSharp.WinForms.ChromiumWebBrowser.LoadError">
             <summary>
@@ -591,7 +427,7 @@
             To access UI elements you'll need to Invoke/Dispatch onto the UI Thread.
             </summary>
             <remarks>Whilst this may seem like a logical place to execute js, it's called before the DOM has been loaded, implement
-            <see cref="M:CefSharp.IRenderProcessMessageHandler.OnContextCreated(CefSharp.IWebBrowser,CefSharp.IBrowser,CefSharp.IFrame)"/> as it's called when the underlying V8Context is created
+            <see cref="M:CefSharp.IRenderProcessMessageHandler.OnContextCreated(CefSharp.IWebBrowser,CefSharp.IBrowser,CefSharp.IFrame)" /> as it's called when the underlying V8Context is created
             (Only called for the main frame at this stage)</remarks>
         </member>
         <member name="E:CefSharp.WinForms.ChromiumWebBrowser.FrameLoadEnd">
@@ -687,6 +523,167 @@
             and false in IRenderProcessMessageHandler.OnContextReleased
             </summary>
         </member>
+        <member name="P:CefSharp.WinForms.ChromiumWebBrowser.UseParentFormMessageInterceptor">
+            <summary>
+            ParentFormMessageInterceptor hooks the Form handle and forwards
+            the move/active messages to the browser, the default is true
+            and should only be required when using <see cref="!:CefSettings.MultiThreadedMessageLoop"/>
+            set to true.
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:CefSharp.WinForms.ChromiumWebBrowser"/> class.
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.OnApplicationExit(System.Object,System.EventArgs)">
+            <summary>
+            Handles the <see cref="E:ApplicationExit" /> event.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#ctor">
+            <summary>
+            This constructor exists as the WinForms designer requires a parameterless constructor, if you are instantiating
+            an instance of this class in code then use the <see cref="M:CefSharp.WinForms.ChromiumWebBrowser.#ctor(System.String,CefSharp.IRequestContext)"/>
+            constructor overload instead. Using this constructor in code is unsupported and you may experience <see cref="T:System.NullReferenceException"/>'s
+            when attempting to access some of the properties immediately after instantiation. 
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.#ctor(System.String,CefSharp.IRequestContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CefSharp.WinForms.ChromiumWebBrowser"/> class.
+            </summary>
+            <param name="address">The address.</param>
+            <param name="requestContext">Request context that will be used for this browser instance,
+            if null the Global Request Context will be used</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.InitializeFieldsAndCefIfRequired">
+            <summary>
+            Required for designer support - this method cannot be inlined as the designer
+            will attempt to load libcef.dll and will subsiquently throw an exception.
+            TODO: Still not happy with this method name, need something better
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.Windows.Forms.Control" /> and its child controls and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.RemoveFromListOfCefBrowsers">
+            <summary>
+            Required for designer support - this method cannot be inlined as the designer
+            will attempt to load libcef.dll and will subsiquently throw an exception.
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.FreeUnmanagedResources">
+            <summary>
+            Required for designer support - this method cannot be inlined as the designer
+            will attempt to load libcef.dll and will subsiquently throw an exception.
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.Load(System.String)">
+            <summary>
+            Loads the specified URL.
+            </summary>
+            <param name="url">The URL to be loaded.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.RegisterJsObject(System.String,System.Object,CefSharp.BindingOptions)">
+            <summary>
+            Registers a Javascript object in this specific browser instance.
+            </summary>
+            <param name="name">The name of the object. (e.g. "foo", if you want the object to be accessible as window.foo).</param>
+            <param name="objectToBind">The object to be made accessible to Javascript.</param>
+            <param name="options">binding options - camelCaseJavascriptNames default to true </param>
+            <exception cref="T:System.Exception">Browser is already initialized. RegisterJsObject must be +
+                                                called before the underlying CEF browser is created.</exception>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.RegisterAsyncJsObject(System.String,System.Object,CefSharp.BindingOptions)">
+            <summary>
+            <para>Asynchronously registers a Javascript object in this specific browser instance.</para>
+            <para>Only methods of the object will be availabe.</para>
+            </summary>
+            <param name="name">The name of the object. (e.g. "foo", if you want the object to be accessible as window.foo).</param>
+            <param name="objectToBind">The object to be made accessible to Javascript.</param>
+            <param name="options">binding options - camelCaseJavascriptNames default to true </param>
+            <exception cref="T:System.Exception">Browser is already initialized. RegisterJsObject must be +
+                                                called before the underlying CEF browser is created.</exception>
+            <remarks>The registered methods can only be called in an async way, they will all return immeditaly and the resulting
+            object will be a standard javascript Promise object which is usable to wait for completion or failure.</remarks>
+        </member>
+        <member name="P:CefSharp.WinForms.ChromiumWebBrowser.JavascriptObjectRepository">
+            <summary>
+            The javascript object repository, one repository per ChromiumWebBrowser instance.
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.OnHandleCreated(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.HandleCreated" /> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnAfterBrowserCreated(CefSharp.IBrowser)">
+            <summary>
+            Called after browser created.
+            </summary>
+            <param name="browser">The browser.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#SetAddress(CefSharp.AddressChangedEventArgs)">
+            <summary>
+            Sets the address.
+            </summary>
+            <param name="args">The <see cref="T:CefSharp.AddressChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#SetLoadingStateChange(CefSharp.LoadingStateChangedEventArgs)">
+            <summary>
+            Sets the loading state change.
+            </summary>
+            <param name="args">The <see cref="T:CefSharp.LoadingStateChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#SetTitle(CefSharp.TitleChangedEventArgs)">
+            <summary>
+            Sets the title.
+            </summary>
+            <param name="args">The <see cref="T:CefSharp.TitleChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#SetTooltipText(System.String)">
+            <summary>
+            Sets the tooltip text.
+            </summary>
+            <param name="tooltipText">The tooltip text.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnFrameLoadStart(CefSharp.FrameLoadStartEventArgs)">
+            <summary>
+            Handles the <see cref="E:FrameLoadStart" /> event.
+            </summary>
+            <param name="args">The <see cref="T:CefSharp.FrameLoadStartEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnFrameLoadEnd(CefSharp.FrameLoadEndEventArgs)">
+            <summary>
+            Handles the <see cref="E:FrameLoadEnd" /> event.
+            </summary>
+            <param name="args">The <see cref="T:CefSharp.FrameLoadEndEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnConsoleMessage(CefSharp.ConsoleMessageEventArgs)">
+            <summary>
+            Handles the <see cref="E:ConsoleMessage" /> event.
+            </summary>
+            <param name="args">The <see cref="T:CefSharp.ConsoleMessageEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnStatusMessage(CefSharp.StatusMessageEventArgs)">
+            <summary>
+            Handles the <see cref="E:StatusMessage" /> event.
+            </summary>
+            <param name="args">The <see cref="T:CefSharp.StatusMessageEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#OnLoadError(CefSharp.LoadErrorEventArgs)">
+            <summary>
+            Handles the <see cref="E:LoadError" /> event.
+            </summary>
+            <param name="args">The <see cref="T:CefSharp.LoadErrorEventArgs"/> instance containing the event data.</param>
+        </member>
         <member name="P:CefSharp.WinForms.ChromiumWebBrowser.CefSharp#Internals#IWebBrowserInternal#BrowserAdapter">
             <summary>
             Gets the browser adapter.
@@ -705,6 +702,36 @@
             </summary>
             <value><c>true</c> if focused; otherwise, <c>false</c>.</value>
             <remarks>This is also how the Microsoft's WebBrowserControl implements the Focused property.</remarks>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.OnSizeChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.SizeChanged" /> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.ResizeBrowser">
+            <summary>
+            Resizes the browser.
+            </summary>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.OnGotFocus(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.GotFocus" /> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.GetBrowser">
+            <summary>
+            Returns the current IBrowser Instance
+            </summary>
+            <returns>browser instance or null</returns>
+        </member>
+        <member name="M:CefSharp.WinForms.ChromiumWebBrowser.IsInputKey(System.Windows.Forms.Keys)">
+            <summary>
+            Makes certain keys as Input keys when CefSettings.MultiThreadedMessageLoop = false
+            </summary>
+            <param name="keyData">key data</param>
+            <returns>true for a select list of keys otherwise defers to base.IsInputKey</returns>
         </member>
     </members>
 </doc>

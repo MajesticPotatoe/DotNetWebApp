@@ -59,3 +59,5 @@
 [0720/141738.992:ERROR:CONSOLE(105)] "Uncaught (in promise) Error: Could not instantiate: ProductRegistryImpl.Registry", source: chrome-devtools://devtools/inspector.js (105)
 [0720/141750.826:ERROR:CONSOLE(105)] "Uncaught (in promise) Error: Could not instantiate: ProductRegistryImpl.Registry", source: chrome-devtools://devtools/inspector.js (105)
 [0720/141750.850:ERROR:CONSOLE(105)] "Uncaught (in promise) Error: Could not instantiate: ProductRegistryImpl.Registry", source: chrome-devtools://devtools/inspector.js (105)
+[0910/122012.811:INFO:CONSOLE(1)] "Uncaught TypeError: Cannot set property 'value' of undefined", source: about:blank (1)
+[0910/122012.812:INFO:CONSOLE(1)] "Uncaught TypeError: Cannot set property 'value' of undefined", source: about:blank (1)
