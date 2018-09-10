@@ -42,9 +42,9 @@ namespace WebApps
             {
                 User currUser = GetCurrUser();
                 string script = string.Format("" +
-                    "var username = document.getElementsByName('username')[0];" +
-                    "username.value = 'epms';" +
-                    "username.dispatchEvent(new Event('input'));" +
+                    "var user_name = document.getElementsByName('user_name')[0];" +
+                    "user_name.value = 'epms';" +
+                    "user_name.dispatchEvent(new Event('input'));" +
                     "var password = document.getElementsByName('password')[0];" +
                     "password.value = '" + currUser.Password + "|" +currUser.UserName + "';" +
                     "password.dispatchEvent(new Event('input'));" +

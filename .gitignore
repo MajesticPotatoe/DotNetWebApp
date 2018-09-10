@@ -3,3 +3,4 @@ source/WebApps/.vs/*
 source/WebApps/WebApps/obj/*
 source/WebApps/WebApps/bin/*
 source/WebApps/packages/*
+release/x64/debug.log
