@@ -20,7 +20,15 @@ namespace WebApps
             WindowState = FormWindowState.Maximized;
         }
 
+        /// <summary>
+        /// The chromium browser instance
+        /// </summary>
         public ChromiumWebBrowser chromeBrowser;
+
+        /// <summary>
+        /// Counts login times to prevent autologin
+        /// </summary>
+        public int loginTimes = 0;
 
         public void InitializeChromium(string view)
         {
@@ -38,8 +46,11 @@ namespace WebApps
         private void OnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
         {
             // do stuff like execute js
-            if (args.IsLoading == false)
+            // 2 options: if you logout, always autolog back in OR only allow autologin once.
+            // if (args.IsLoading == false && (this.chromeBrowser.Address == "http://localhost:3010/" || this.chromeBrowser.Address == "http://epms-dev:3010/" || this.chromeBrowser.Address == "http://epms-web:3010/"))
+            if (args.IsLoading == false && this.loginTimes == 0)
             {
+                this.loginTimes = 1;
                 User currUser = GetCurrUser();
                 string script = string.Format("" +
                     "var user_name = document.getElementsByName('user_name')[0];" +
